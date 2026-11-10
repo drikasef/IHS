@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Leveza Plena</title>
+<title>IHS Instituto Harmonia do Ser</title>
 <meta name="description" content="Terapias integrativas para mulheres 40+: exercícios para corpo e mente, alimentação e plantas na cozinha, com base na Medicina Chinesa e na Ayurveda.">
-<meta property="og:title" content="Leveza Plena">
+<meta property="og:title" content="IHS - Instituto Harmonia do Ser">
 <meta property="og:description" content="Mais saúde e leveza para mulheres 40+, com Medicina Chinesa e Ayurveda.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#F8F4FE">
@@ -38,7 +38,9 @@ a{color:var(--jade)}
 /* navegação */
 nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px;flex-wrap:wrap}
 .brand{font-family:var(--display);font-weight:700;font-size:1.25rem;color:var(--fg);text-decoration:none}
-.brand span{color:var(--saffron)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .mono{background:var(--jade);color:var(--bg);border-radius:12px;padding:4px 12px;font-size:1.15rem;letter-spacing:.06em}
+.brand .full{font-size:.95rem;font-weight:600;line-height:1.2;max-width:16ch}
 .links{display:flex;gap:22px;flex-wrap:wrap}
 .links a{color:var(--fg);text-decoration:none;font-weight:600;font-size:.95rem}
 .links a:hover{color:var(--jade);text-decoration:underline;text-underline-offset:5px}
@@ -151,7 +153,7 @@ footer p+p{margin-top:8px}
 
 <header class="wrap">
   <nav aria-label="Principal">
-    <a class="brand" href="#inicio" id="brand">Leveza <span>Plena</span></a>
+    <a class="brand" href="#inicio" id="brand"><span class="mono">IHS</span><span class="full">Instituto Harmonia do Ser</span></a>
     <div class="links">
       <a href="#pilares">Método</a>
       <a href="#tradicoes">Tradições</a>
@@ -404,7 +406,7 @@ footer p+p{margin-top:8px}
 
 <footer>
   <div class="wrap">
-    <p id="copy">© 2026 Leveza Plena. Todos os direitos reservados.</p>
+    <p id="copy">© 2026 Instituto Harmonia do Ser. Todos os direitos reservados.</p>
     <p>As informações deste site têm caráter educativo e não substituem avaliação, diagnóstico ou tratamento médico. Plantas e temperos podem interagir com medicamentos, gravidez e condições de saúde; consulte seu médico antes de mudar a sua rotina.</p>
   </div>
 </footer>
@@ -463,13 +465,14 @@ mostrar("calor");
 /* Conteúdo editável pelo painel /admin */
 function aplicar(c){
   const $ = id => document.getElementById(id);
-  const brand = c.brand || "Leveza Plena";
-  const w = brand.split(" ");
-  const last = w.pop();
+  const brand = c.brand || "Instituto Harmonia do Ser";
+  const sigla = brand.split(/\s+/).filter(p => p.length > 2).map(p => p[0].toUpperCase()).join("").slice(0, 4) || brand.slice(0, 3).toUpperCase();
   const b = $("brand");
-  b.textContent = w.length ? w.join(" ") + " " : "";
-  const s = document.createElement("span"); s.textContent = last; b.appendChild(s);
-  document.title = brand;
+  b.replaceChildren();
+  const m = document.createElement("span"); m.className = "mono"; m.textContent = sigla;
+  const f = document.createElement("span"); f.className = "full"; f.textContent = brand;
+  b.append(m, f);
+  document.title = sigla + " " + brand;
   $("copy").textContent = "© " + new Date().getFullYear() + " " + brand + ". Todos os direitos reservados.";
 
   if (c.nome) $("t-sobre").textContent = "Olá, eu sou " + c.nome;

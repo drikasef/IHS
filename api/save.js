@@ -25,7 +25,7 @@ export default async function handler(req, res) {
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ error: 'E-mail inválido.' });
 
   Object.assign(next, {
-    brand: str(b.brand, 40),
+    brand: str(b.brand, 60),
     nome: str(b.nome, 80),
     credenciais: str(b.credenciais, 200),
     sobre1: str(b.sobre1, 1500),

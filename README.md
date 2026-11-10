@@ -1,4 +1,4 @@
-# Leveza Plena
+# IHS - Instituto Harmonia do Ser
 
 Site com painel de administração (`/admin`) para editar WhatsApp, foto, textos e contatos sem mexer em código.
 
